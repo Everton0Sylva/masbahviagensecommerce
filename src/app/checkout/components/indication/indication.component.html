@@ -1,0 +1,75 @@
+<form [formGroup]="indicationFormGroup" fxLayout="row wrap" (ngSubmit)="onSubmitIndication()">
+    <div fxLayout="row wrap" fxFlex="100" fxLayoutGap="10px" fxLayoutGap.sm="0px" fxLayoutGap.xs="0px">
+
+        <mat-form-field appearance="outline" fxFlex="47" fxFlex.sm="100" fxFlex.xs="100">
+            <mat-label>Nome do indicado</mat-label>
+            <input matInput placeholder="Nome do seu indicado" formControlName="indicationName"
+                autocomplete="new-indication-name" required>
+            <!-- <mat-icon matPrefix>person</mat-icon> -->
+            <mat-error *ngIf="indicationFormGroup.controls.indicationName?.errors?.required">Nome é Obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="auto">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="indicationPhone" placeholder="Telefone com DDD" required [textMask]="{ mask: MASKS.telefone.textMask }">
+            <mat-error *ngIf="indicationFormGroup.controls.indicationPhone?.errors?.required">Telefone Obrigatório</mat-error>
+            <mat-error *ngIf="indicationFormGroup.controls.indicationPhone?.errors?.telefone">Telefone Inválido</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row wrap" fxFlex="100" fxLayoutGap="10px" fxLayoutGap.sm="0px" fxLayoutGap.xs="0px">
+        <mat-form-field appearance="outline" fxFlex="47" fxFlex.sm="100" fxFlex.xs="100">
+            <mat-label>Email do indicado</mat-label>
+            <input matInput placeholder="Email do seu indicado" formControlName="indicationEmail"
+                autocomplete="new-indication-email" required>
+            <mat-error *ngIf="indicationFormGroup.controls.indicationEmail?.errors?.required">Email é Obrigatório</mat-error>
+            <mat-error *ngIf="indicationFormGroup.controls.indicationEmail?.errors?.email">Email inválido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="auto" fxFlex.sm="100" fxFlex.xs="100">
+            <mat-label>Cidade</mat-label>
+            <input matInput
+                aria-label="Cidade"
+                [matAutocomplete]="auto"
+                formControlName="indicationCityAutoComplete"
+                (keydown)="clearCityForm($event)"
+                required>
+                <mat-spinner matSuffix diameter="30" *ngIf="loadingCityFilter"></mat-spinner>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="citySelected($event)" required>
+                <mat-option *ngFor="let city of arrayCities" [value]="city">
+                        <span>{{ city.name }} - {{ city.uf.initials }}</span>
+                </mat-option>
+                <mat-option disabled
+                    *ngIf="arrayCities?.length == 0 && indicationFormGroup.value.indicationCityAutoComplete?.length >= 3
+                        && indicationFormGroup.controls.city?.errors?.required
+                        && !loadingCityFilter">Cidade não encontrada...</mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="indicationFormGroup.controls.indicationCityAutoComplete?.errors?.required">Selecione a Cidade</mat-error>
+
+            <div class="mat-error-custom"
+              *ngIf="indicationFormGroup.controls.city?.errors?.required
+                    && !indicationFormGroup.controls.indicationCityAutoComplete?.errors?.required">Selecione a Cidade</div>
+        </mat-form-field>
+    </div>
+
+    <div class="mb-3 mt-2" fxFlex="100" fxLayoutAlign="center start" *ngIf="personalInfo?.restriction">
+        <mat-checkbox formControlName="indicationAccept" class="text-primary-app " color="primary" fxFlex="80" required>
+            <div style="line-height: 18px" fxLayout="row wrap" fxLayoutAlign="start center">
+                <p class="mb-0"><em>Pessoa indicada está ciente que seus dados serão compartilhados com a Coobrastur</em></p>
+            </div>
+        </mat-checkbox>
+    </div>
+
+    <div fxFlex="100" fxFlex.sm="100" fxFlex.xs="100" fxLayoutAlign="center start">
+        <re-captcha
+            (resolved)="recaptchaResolve($event)"
+            #captchaRef="reCaptcha"
+            required
+            siteKey="6Ld0SkseAAAAAGsTCj1pOAZzI6qNNk_mL_zBJIHo">
+        </re-captcha>
+    </div>
+
+    <div fxFlex="100" class="mt-3" fxLayoutAlign="space-around start">
+        <button class="btn-accent" [disabled]="indicationFormGroup.invalid || loading">Indicar</button>
+    </div>
+</form>

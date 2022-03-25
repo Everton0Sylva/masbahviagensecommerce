@@ -1,0 +1,64 @@
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    70% { opacity: 1; }
+}
+
+.header {
+    background-size: 100%;
+    background-color: white;
+}
+.container-header {
+    width: 100%;
+    max-width: 1300px;
+    margin: auto;
+}
+.img-logo {
+    max-height: 50px;
+}
+.link {
+    font-weight: 800 !important;
+    font-size: 18px;
+    color: var(--primary-color) !important;
+}
+.btn-assine-nav {
+    background-color: var(--accent-color);
+    align-items: flex-end;
+    border-radius: 50px;
+    padding: 5px 30px !important;
+}
+.btn-assine-bottom {
+    background-color: var(--accent-color);
+    margin-top: 180px;
+    padding: 5px 70px;
+    color: white;
+    border-radius: 50px;
+    font-weight: bold;
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    text-decoration: none;
+    
+    @media (min-width: 1441px) {
+        margin-top: 250px;
+    }
+
+    @media (max-width: 476px) {
+        margin-left: 40px;   
+    }
+}
+@media (max-width: 992px) {
+    .navbar {
+        width: 100%;
+        padding: 0;
+
+        .navbar-brand {
+            padding-left: 15px;
+        }
+        .navbar-toggler {
+            margin-right: 15px;
+        }
+    }
+    .navbar-collapse {
+        background-image: linear-gradient(#9ca7c4e7, var(--primary-color) 80%);
+        padding-bottom: 15px;
+    }
+}

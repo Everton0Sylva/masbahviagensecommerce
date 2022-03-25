@@ -1,0 +1,40 @@
+.btn-accent {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 5px 30px;
+    border: 1px solid white;
+    border-radius: 50px;
+    font-weight: 500;
+
+    &:disabled {
+        background-color: var(--green-color-disabled);
+    }
+}
+
+:host ::ng-deep {
+    .mat-form-field-outline-gap {
+        // background-color: white;
+    }
+    .mat-form-field-outline-start {
+        // background-color: white;
+    }
+    .mat-form-field-outline-end {
+        // background-color: white;
+    }
+    .mat-form-field-label {
+        // color: var(--primary-color);
+    }
+    .mat-checkbox-layout {
+        white-space: pre-wrap !important;
+        font-size: 14px;
+    }
+
+    .swal2-toast-shown .swal2-container {
+        width: 500px !important;
+    }
+    
+    .swal2-popup.swal2-toast {
+        background: var(--accent-color) !important;
+        color: white !important;
+    }
+}

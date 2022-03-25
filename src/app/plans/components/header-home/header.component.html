@@ -1,0 +1,21 @@
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light mb-3">
+        <div class="container-header" fxLayout="row" fxLayout.xs="row wrap" fxLayout.sm="row wrap" fxLayoutAlign="space-between center">
+            <a class="navbar-brand" [routerLink]="'/'" fxFlex="26">
+                <img class="img-logo img-fluid" src="{{ baseAssets }}/home/Logo-topo-239x66px.png" alt="Logo Coob +">
+            </a>
+    
+            <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+                &#9776;
+            </button>
+    
+            <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse justify-content-end" fxFlex="auto" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100">
+                <ul class="navbar-nav">
+                    <li class="nav-item" *ngFor="let link of links">
+                        <a [ngClass]="['nav-link pl-2 pr-2 link', link.button ? 'btn-assine-nav ml-3': '']" [href]="link.url" (click)="isMenuCollapsed = true">{{ link.name | uppercase }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

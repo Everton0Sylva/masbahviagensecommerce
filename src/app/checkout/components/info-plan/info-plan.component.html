@@ -1,0 +1,547 @@
+<ngx-spinner bdColor="rgba(52,35,128,0.8)" size="medium" color="#f26625" type="ball-clip-rotate-multiple"
+    [fullScreen]="true">
+    <p style="color: white"> Carregando... </p>
+</ngx-spinner>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" *ngIf="!finished">
+            <div class="borda-checkout">
+                <h4 class="col-md-12 mt-4">Você selecionou o plano:</h4>
+                <h2 class="col-md-12"><b>{{ infoPlan.name }}</b></h2>
+                <hr class="hr">
+                <div class="col-md-12">
+                    <h4>Descrição do plano:</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mt-3">Categoria de hotéis</h5>
+                            <p class="mb-1">{{ infoPlan.category }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mt-1">Utilização</h5>
+                            <p class="mb-1">{{ infoPlan.use }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mt-1">Rede hoteleira</h5>
+                            <p class="mb-1">{{ infoPlan.hotelChain }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mt-1">Modalidade</h5>
+                            <p class="mb-1">{{ infoPlan.modality }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="hr">
+                <form class="mt-2 col-md-12" [formGroup]="setupPlanFormGroup">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <h4>Quantidade de diárias:</h4>
+                            </div>
+                            <div class="row" style="cursor: not-allowed;">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Diárias</mat-label>
+                                    <mat-select required formControlName="qtdDiarias" [disabled]="true">
+                                        <mat-option *ngFor="let daily of arrayDaily" [value]="daily">
+                                            {{ daily }} diárias
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-icon matPrefix>hotel</mat-icon>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <h4>Quantidade de pessoas:</h4>
+                            </div>
+                            <div class="row" style="cursor: not-allowed;">
+                                <!-- <p>Pessoas</p> -->
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Pessoas</mat-label>
+                                    <mat-select formControlName="plFamilia" [disabled]="true">
+                                        <mat-option [value]="false">2</mat-option>
+                                        <mat-option [value]="true" *ngIf="!selectedPlanGo">3</mat-option>
+                                    </mat-select>
+                                    <mat-icon matPrefix>group</mat-icon>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <hr class="hr" style="margin-top: 0;">
+                <div class="col-md-12 mb-1" fxLayoutAlign="space-between center">
+                    <h4>Café da manhã:</h4>
+                    <p class="mb-0">Incluso</p>
+                </div>
+                <div class="col-md-12 mb-1" fxLayoutAlign="space-between center" *ngIf="vendCodigo == '99015'">
+                    <h4>Dotz:</h4>
+                    <p class="mb-0">10.000</p>
+                </div>
+                <div class="col-md-12 mb-1" fxLayoutAlign="space-between center">
+                    <h4>Seguro Assist Card:</h4>
+                    <p class="mb-0">Incluso</p>
+                </div>
+                <div class="col-md-12 mb-1" fxLayoutAlign="space-between center">
+                    <h4>Cupom de desc.:</h4>
+                    <p class="mb-0">
+                        <button class="fs-26" (click)="onToggleCoupon()" mat-flat-button>{{ couponToggle ? '-' : '+'
+                            }}</button>
+                    </p>
+                </div>
+                <form [formGroup]="setupPlanFormGroup" class="col-md-12 mb-1" *ngIf="couponToggle"
+                    fxLayoutAlign="space-between start" fxLayoutGap="10px">
+                    <mat-form-field appearance="outline" fxFlex="65">
+                        <mat-label>Código do Cupom</mat-label>
+                        <input matInput placeholder="Código do Cupom" formControlName="cupomDesconto"
+                            autocomplete="new-cupom">
+                        <mat-error *ngIf="setupPlanFormGroup.controls.cupomDesconto?.errors?.required">Insira um Cupom
+                        </mat-error>
+                        <mat-error *ngIf="setupPlanFormGroup.controls.cupomDesconto?.errors?.couponInvalid">Cupom
+                            inválido
+                        </mat-error>
+                    </mat-form-field>
+                    <button class="mt-1 btn-aplicar" (click)="validationCoupomDiscount()" fxFlex="auto"
+                        mat-stroked-button>Aplicar</button>
+                </form>
+                <hr class="hr">
+                <div class="col-md-12 mb-1" fxLayoutAlign="space-between center"
+                    *ngIf="infoPlan.prices.subTotal > 0 && infoPlan.prices.discount > 0">
+                    <h3>Subtotal:</h3>
+                    <p class="mb-0 font-weight-bold fs-24"><b>R$ {{ formatPrice(infoPlan.prices.subTotal, 1) }}</b><span
+                            class="font-weight-normal fs-16">,{{ formatPrice(infoPlan.prices.subTotal, 2) }}</span></p>
+                </div>
+                <div class="col-md-12 mb-1" fxLayoutAlign="space-between center"
+                    *ngIf="infoPlan.prices.subTotal > 0 && infoPlan.prices.discount > 0">
+                    <h3>Desconto:</h3>
+                    <p class="mb-0 font-weight-bold fs-24"><b>R$ {{ formatPrice(infoPlan.prices.discount, 1) }}</b><span
+                            class="font-weight-normal fs-16">,{{ formatPrice(infoPlan.prices.discount, 2) }}</span></p>
+                </div>
+                <div class="col-md-12 mb-5" fxLayoutAlign="space-between center">
+                    <h3>Total:</h3>
+                    <p class="mb-0 font-weight-bold fs-24"><b>R$ {{ formatPrice(infoPlan.prices.total, 1) }}</b><span
+                            class="font-weight-normal fs-16">,{{ formatPrice(infoPlan.prices.total, 2) }}</span></p>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-md-1 mt-4" *ngIf="!finished"></div> -->
+        <div class="col-md-6" [ngClass]="{'col-md-12': finished}">
+            <div class="borda-checkout pb-3">
+                <mat-stepper #stepper class="stepper-custom mt-4">
+                    <mat-step>
+                        <h4>Ainda não sou associado</h4>
+                        <form class="mt-3" [formGroup]="registerRdFormGroup" fxLayout="row wrap"
+                            (ngSubmit)="onSubmitRegisterRD()">
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>Insira seu email</mat-label>
+                                <input type="email" matInput placeholder="Email" formControlName="email"
+                                    autocomplete="new-email" required (ngModelChange)="testEmail()">
+                                <mat-icon matPrefix>email</mat-icon>
+                                <mat-error *ngIf="registerRdFormGroup.controls.email?.errors?.required">Email é
+                                    Obrigatório</mat-error>
+                                <mat-error *ngIf="registerRdFormGroup.controls.email?.errors?.email">Email inválido
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>Nome Completo</mat-label>
+                                <input type="text" matInput placeholder="Nome Completo" formControlName="fullName"
+                                    autocomplete="new-name" required>
+                                <mat-icon matPrefix>face</mat-icon>
+                                <mat-error *ngIf="registerRdFormGroup.controls.fullName?.errors?.required">Nome é
+                                    Obrigatório</mat-error>
+                                <mat-error *ngIf="registerRdFormGroup.controls.fullName?.errors?.pattern">Digite o nome
+                                    completo</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>Telefone</mat-label>
+                                <input type="tel" matInput placeholder="Telefone" formControlName="phone"
+                                    autocomplete="new-email" required [textMask]="{ mask: MASKS.telefone.textMask }">
+                                <mat-icon matPrefix>phone</mat-icon>
+                                <mat-error *ngIf="registerRdFormGroup.controls.phone?.errors?.required">Telefone é
+                                    Obrigatório</mat-error>
+                                <mat-error *ngIf="registerRdFormGroup.controls.phone?.errors?.telefone">Telefone
+                                    inválido</mat-error>
+                            </mat-form-field>
+                            <div class="text-center" fxFlex="100">
+                                <button matRipple class="btn-green"
+                                    [disabled]="registerRdFormGroup.invalid || !online">Cadastrar</button>
+                            </div>
+                        </form>
+                        <hr class="hr">
+                        <h4>Já sou viajante</h4>
+                        <form class="mt-3" [formGroup]="loginFormGroup" fxLayout="row wrap"
+                            (ngSubmit)="onSubmitLogin()">
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>Login</mat-label>
+                                <input matInput placeholder="Login" formControlName="username"
+                                    autocomplete="new-username" required>
+                                <mat-icon matPrefix>person</mat-icon>
+                                <mat-error *ngIf="loginFormGroup.controls.username?.errors?.required">Usuário é
+                                    Obrigatório</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>Senha</mat-label>
+                                <input matInput type="password" placeholder="Senha" formControlName="password"
+                                    autocomplete="new-password" required>
+                                <mat-icon matPrefix>lock</mat-icon>
+                                <mat-error *ngIf="loginFormGroup.controls.password?.errors?.required">Senha é
+                                    Obrigatória</mat-error>
+                            </mat-form-field>
+                            <div class="text-center" fxFlex="100">
+                                <button matRipple class="btn-green"
+                                    [disabled]="loginFormGroup.invalid || !online">Entrar</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step>
+                        <h4>Complete seu cadastro</h4>
+                        <form class="mt-3" [formGroup]="registerFormGroup" fxLayout="row wrap"
+                            (ngSubmit)="onSubmitRegister()">
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>CPF</mat-label>
+                                <input type="text" matInput placeholder="CPF" formControlName="cpf"
+                                    autocomplete="new-cpf" required [textMask]="{ mask: MASKS.cpf.textMask }"
+                                    (ngModelChange)="hasRestriction();hasRegister();">
+                                <mat-icon matPrefix>fingerprint</mat-icon>
+                                <mat-error *ngIf="registerFormGroup.controls.cpf?.errors?.required">CPF é Obrigatório
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="registerFormGroup.controls.cpf?.errors?.cpf && !registerFormGroup.controls.cpf?.errors?.required">
+                                    CPF inválido</mat-error>
+                                <mat-error *ngIf="registerFormGroup.controls.cpf?.errors?.registered">Você já é
+                                    cadastrado. Realize o <a class="link font-weight-bold cursor-pointer"
+                                        (click)="doLogin()">login</a></mat-error>
+                            </mat-form-field>
+                            <div fxFlex="100" formGroupName="address" fxLayout="row wrap">
+                                <mat-form-field appearance="outline" fxFlex="100">
+                                    <mat-label>CEP</mat-label>
+                                    <input matInput placeholder="CEP" formControlName="zipCode"
+                                        autocomplete="new-zip-code" required [textMask]="{ mask: MASKS.cep.textMask }"
+                                        (keyup)="getCepForm($event)">
+                                    <mat-icon matPrefix>contact_mail</mat-icon>
+                                    <mat-error *ngIf="registerFormGroup.get('address.zipCode')?.errors?.required">CEP é
+                                        Obrigatório</mat-error>
+                                    <mat-error *ngIf="registerFormGroup.get('address.zipCode')?.errors?.cep">CEP
+                                        inválido</mat-error>
+                                    <mat-error *ngIf="registerFormGroup.get('address.zipCode')?.errors?.notfound">Não
+                                        encontrado</mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" fxFlex="100">
+                                    <mat-label>Cidade</mat-label>
+                                    <input matInput placeholder="Cidade" formControlName="cityAutoComplete"
+                                        autocomplete="new-city-autocomplete" required>
+                                    <mat-icon matPrefix>home</mat-icon>
+                                    <mat-error
+                                        *ngIf="registerFormGroup.get('address.cityAutoComplete')?.errors?.required">
+                                        Cidade é Obrigatória</mat-error>
+                                </mat-form-field>
+
+
+                                <!-- <mat-form-field appearance="outline" fxFlex="100" *ngIf="doRegister && haveIdCity()">
+                                    <mat-label>Cidade</mat-label>
+                                    <input matInput
+                                      aria-label="Cidade"
+                                      [matAutocomplete]="auto"
+                                      formControlName="cityAutoComplete"
+                                      (keydown)="clearCityForm($event)"
+                                      required>
+                                      <mat-spinner matSuffix diameter="30" *ngIf="loadingCityFilter"></mat-spinner>
+                                    <mat-icon matPrefix>home</mat-icon>
+                                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="citySelected($event)" required>
+                                      <mat-option *ngFor="let city of arrayCities" [value]="city">
+                                        <span>{{ city.name }} - {{ city.uf.initials }}</span>
+                                      </mat-option>
+                                      <mat-option disabled
+                                        *ngIf="arrayCities?.length == 0 && registerFormGroup.value.cityAutoComplete?.length >= 3
+                                              && registerFormGroup.controls.city?.errors?.required
+                                              && !loadingCityFilter">Cidade não encontrada...</mat-option>
+                                    </mat-autocomplete>
+                                    <mat-error *ngIf="registerFormGroup.controls.cityAutoComplete?.errors?.required">Selecione a Cidade</mat-error>
+                      
+                                    <div class="mat-error-custom"
+                                      *ngIf="registerFormGroup.controls.city?.errors?.required
+                                            && !registerFormGroup.controls.cityAutoComplete?.errors?.required">Selecione a Cidade</div>
+                                </mat-form-field> -->
+
+                                <mat-form-field appearance="outline" fxFlex="100" *ngIf="doRegister && haveIdCity()">
+                                    <mat-label>Rua</mat-label>
+                                    <input matInput placeholder="Rua" formControlName="street" autocomplete="new-street"
+                                        required>
+                                    <mat-icon matPrefix>edit_road</mat-icon>
+                                    <mat-error *ngIf="registerFormGroup.get('address.street')?.errors?.required">Rua é
+                                        Obrigatório</mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" fxFlex="100" *ngIf="doRegister && haveIdCity()">
+                                    <mat-label>Número</mat-label>
+                                    <input type="number" matInput placeholder="Número" formControlName="number"
+                                        autocomplete="new-number" required (keydown)="somenteNumeros($event)">
+                                    <mat-icon matPrefix>tag</mat-icon>
+                                    <mat-error *ngIf="registerFormGroup.get('address.number')?.errors?.required">Número
+                                        é Obrigatório</mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" fxFlex="100" *ngIf="doRegister && haveIdCity()">
+                                    <mat-label>Bairro</mat-label>
+                                    <input matInput placeholder="Bairro" formControlName="district"
+                                        autocomplete="new-district" required>
+                                    <mat-icon matPrefix>terrain</mat-icon>
+                                    <mat-error *ngIf="registerFormGroup.get('address.district')?.errors?.required">
+                                        Bairro é Obrigatório</mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" fxFlex="100" *ngIf="doRegister && haveIdCity()">
+                                    <mat-label>Complemento</mat-label>
+                                    <input matInput placeholder="Bairro" formControlName="complement"
+                                        autocomplete="new-complement">
+                                    <mat-icon matPrefix>add</mat-icon>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex="100">
+                                <p class="mb-0">Você foi indicado por alguém?</p>
+                            </div>
+
+                            <mat-button-toggle-group formControlName="indicated" class="mb-3">
+                                <mat-button-toggle [value]="true">Sim</mat-button-toggle>
+                                <mat-button-toggle [value]="false">Não</mat-button-toggle>
+                            </mat-button-toggle-group>
+
+                            <mat-form-field appearance="outline" fxFlex="100"
+                                *ngIf="registerFormGroup.controls.indicated.value">
+                                <mat-label>CPF do seu indicador</mat-label>
+                                <input type="text" matInput placeholder="CPF do seu indicador"
+                                    formControlName="cpfIndicator" autocomplete="new-cpf"
+                                    [required]="registerFormGroup.controls.indicated.value"
+                                    [textMask]="{ mask: MASKS.cpf.textMask }" (ngModelChange)="hasIndication()">
+                                <mat-icon matPrefix>fingerprint</mat-icon>
+                                <mat-error *ngIf="registerFormGroup.controls.cpfIndicator?.errors?.required">CPF é
+                                    Obrigatório
+                                </mat-error>
+                                <mat-error *ngIf="registerFormGroup.controls.cpfIndicator?.errors?.noindicator">Não
+                                    encontramos esse CPF em nossa base
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="registerFormGroup.controls.cpfIndicator?.errors?.cpf && !registerFormGroup.controls.cpfIndicator?.errors?.required">
+                                    CPF inválido</mat-error>
+                            </mat-form-field>
+
+                            <div fxFlex="100" class="mt-1">
+                                <mat-checkbox formControlName="accept" required>
+                                    Concordo com as políticas e termos do <a
+                                        href="https://www.coobmais.com.br/contratos/vendasemadesao/CONTRATO-LEGAL-UNIFICADO-V28-08.pdf"
+                                        download="https://www.coobmais.com.br/contratos/vendasemadesao/CONTRATO-LEGAL-UNIFICADO-V28-08.pdf"
+                                        target="_blank" rel="nofollow">contrato</a>
+                                </mat-checkbox>
+                            </div>
+                            <div fxFlex="100" class="mt-0 mb-2">
+                                <mat-checkbox formControlName="news">Quero receber novidades por email.</mat-checkbox>
+                            </div>
+                            <div class="text-center" fxFlex="100">
+                                <button matRipple class="btn-green"
+                                    [disabled]="registerFormGroup.invalid || !online">Continuar</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step>
+                        <h4>Dados de Pagamento</h4>
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                            <button fxFlex.xs="100" fxFlex.sm="100" class="btn-card mt-1" mat-raised-button
+                                [ngClass]="{ 'btn-card-not-choose' : thirdPartyCard }"
+                                (click)="onChooseThirdPartyCard(false)">Cartão de crédito</button>
+                            <button fxFlex.xs="100" fxFlex.sm="100" class="btn-card mt-1" mat-raised-button
+                                [ngClass]="{ 'btn-card-not-choose' : !thirdPartyCard }"
+                                (click)="onChooseThirdPartyCard(true)">Cartão de crédito de terceiro</button>
+                        </div>
+                        <hr class="hr">
+                        <h4>Informações do cartão {{ thirdPartyCard ? 'de terceiro' : '' }}</h4>
+                        <form [formGroup]="paymentFormGroup" fxLayout="row wrap" (ngSubmit)="onSubmitPayment()">
+                            <mat-form-field appearance="outline" fxFlex="100" *ngIf="thirdPartyCard">
+                                <mat-label>CPF do Terceiro</mat-label>
+                                <input type="text" matInput placeholder="CPF" formControlName="cpf"
+                                    autocomplete="new-cpf-third" [textMask]="{ mask: MASKS.cpf.textMask }">
+                                <mat-icon matPrefix>fingerprint</mat-icon>
+                                <mat-error *ngIf="paymentFormGroup.controls.cpf?.errors?.required">CPF é Obrigatório
+                                </mat-error>
+                                <mat-error *ngIf="paymentFormGroup.controls.cpf?.errors?.cpf">CPF inválido</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" fxFlex="100" *ngIf="thirdPartyCard">
+                                <mat-label>Telefone do Terceiro</mat-label>
+                                <input type="tel" matInput placeholder="Telefone" formControlName="phone"
+                                    autocomplete="new-phone-third" [textMask]="{ mask: MASKS.telefone.textMask }">
+                                <mat-icon matPrefix>phone</mat-icon>
+                                <mat-error *ngIf="paymentFormGroup.controls.phone?.errors?.required">Telefone é
+                                    Obrigatório</mat-error>
+                                <mat-error *ngIf="paymentFormGroup.controls.phone?.errors?.telefone">Telefone inválido
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>Número do cartão de crédito</mat-label>
+                                <input matInput placeholder="Número do cartão de crédito" formControlName="ccNumber"
+                                    autocomplete="new-credit-card-number" required
+                                    mask="{{ customMasks.creditCard }} || {{ customMasks.creditCard2 }} || {{ customMasks.creditCard3 }}"
+                                    (ngModelChange)="verifyFlag()">
+                                <mat-icon matPrefix>credit_card</mat-icon>
+                                <div fxLayoutAlign="center center" matSuffix class="align-items-center">
+                                    <img *ngIf="paymentFormGroup.value.ccImageFlag" class="img-fluid img-flag pt=2"
+                                        src="{{ baseCards }}/{{ paymentFormGroup.value.ccImageFlag }}"
+                                        alt="imagem cartão">
+                                </div>
+                                <mat-error *ngIf="paymentFormGroup.controls.ccNumber?.errors?.required">Número é
+                                    Obrigatório</mat-error>
+                                <mat-error
+                                    *ngIf="paymentFormGroup.controls.ccNumber?.errors?.pattern || paymentFormGroup.controls.ccNumber?.errors?.mask">
+                                    Número inválido</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>Nome impresso no cartão</mat-label>
+                                <input matInput placeholder="Nome impresso no cartão" formControlName="ccName"
+                                    autocomplete="new-credit-card-name" required (keydown)="somenteLetras($event)">
+                                <mat-icon matPrefix>call_to_action</mat-icon>
+                                <mat-error *ngIf="paymentFormGroup.controls.ccName?.errors?.required">Nome é Obrigatório
+                                </mat-error>
+                            </mat-form-field>
+                            <div fxFlex="100" fxLayoutGap="10px" fxLayoutGap.xs="0" fxLayoutGap.sm="0"
+                                fxLayout="row wrap">
+                                <mat-form-field appearance="outline" fxFlex="48" fxFlex.xs="100" fxFlex.sm="100">
+                                    <mat-label>Validade</mat-label>
+                                    <input matInput placeholder="Validade" formControlName="ccExpirationDate"
+                                        autocomplete="new-credit-card-expiration" required
+                                        [textMask]="{ mask: customMasks.expirationDateTextMask }">
+                                    <mat-icon matPrefix>event_available</mat-icon>
+                                    <mat-error *ngIf="paymentFormGroup.controls.ccExpirationDate?.errors?.required">Data
+                                        é Obrigatória</mat-error>
+                                    <mat-error *ngIf="paymentFormGroup.controls.ccExpirationDate?.errors?.pattern">Data
+                                        inválida</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex="auto">
+                                    <mat-label>Cód. Segurança</mat-label>
+                                    <input matInput placeholder="Cód. Segurança" formControlName="ccCVV"
+                                        autocomplete="new-credit-card-codigo-security" required
+                                        mask="{{ customMasks.cvv }} || {{ customMasks.cvv2 }}">
+                                    <mat-icon matPrefix>vpn_key</mat-icon>
+                                    <mat-error *ngIf="paymentFormGroup.controls.ccCVV?.errors?.required">Código é
+                                        Obrigatório</mat-error>
+                                    <mat-error *ngIf="paymentFormGroup.controls.ccCVV?.errors?.pattern">Código é
+                                        Obrigatório</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex="auto">
+                                    <mat-label>Dia do vencimento</mat-label>
+                                    <input type="number" min="1" max="28" matInput placeholder="Dia do vencimento"
+                                        formControlName="paymentDay" autocomplete="new-credit-card-payment-day" required
+                                        (keydown)="limitCharacters(2, paymentFormGroup.controls.paymentDay.value, $event)">
+                                    <mat-icon matPrefix>event</mat-icon>
+                                    <mat-error *ngIf="paymentFormGroup.controls.paymentDay?.errors?.required">Dia é
+                                        Obrigatório</mat-error>
+                                    <mat-error
+                                        *ngIf="paymentFormGroup.controls.paymentDay?.errors?.min || paymentFormGroup.controls.paymentDay?.errors?.max">
+                                        Dia inválido (Min. 1 Max. 28)
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="100" class="mt-1">
+                                <mat-checkbox formControlName="accept" required>
+                                    Concordo com as políticas e termos do <a
+                                        href="https://www.coobmais.com.br/contratos/vendasemadesao/CONTRATO-LEGAL-UNIFICADO-V28-08.pdf"
+                                        download="https://www.coobmais.com.br/contratos/vendasemadesao/CONTRATO-LEGAL-UNIFICADO-V28-08.pdf"
+                                        target="_blank" rel="nofollow">contrato</a>
+                                </mat-checkbox>
+                            </div>
+                            <div fxFlex="100" class="mt-1" *ngIf="personalInfo?.restriction">
+                                <p class="text-danger">
+                                    Verificamos seu CPF e encontramos pendências financeiras. Caso deseje continuar,
+                                    você deve concordar com os
+                                    <a class="link text-danger" href="#" target="_blank" rel="nofollow"><b>termos do
+                                            contrato de aditamento</b></a>
+                                </p>
+                            </div>
+                            <div fxFlex="100" class="mt-1" *ngIf="personalInfo?.restriction">
+                                <mat-checkbox formControlName="additionTerms" required>
+                                    Concordo com os <a
+                                        href="https://www.coobmais.com.br/contratos/vendasemadesao/CONTRATO-LEGAL-ADITAMENTO-V28-08.pdf"
+                                        target="_blank" rel="nofollow">termos do aditamento</a>
+                                </mat-checkbox>
+                            </div>
+                        </form>
+                        <div class="text-center mt-4 mb-3" fxFlex="100">
+                            <button matRipple class="btn-green" (click)="onSubmitPayment()">Comprar</button>
+                        </div>
+                    </mat-step>
+                    <mat-step>
+                        <div>
+                            <div *ngIf="finished">
+                                <h4>Informações da sua compra:</h4>
+                                <p class="resp-titulo">Sua assinatura de viagens Coob+ foi aprovada!</p>
+                                <p>Agora é só aguardar uns minutinhos para receber um e-mail de confirmação. Em breve
+                                    você estará viajando pelo Brasil do seu jeito!</p>
+                                <h4 class="mt-4">Resumo:</h4>
+                                <h2><b>{{ infoPlan.name }}</b></h2>
+                                <hr class="hr">
+                                <h4>Descrição do plano:</h4>
+                                <h5 class="mt-3">Categoria de hotéis</h5>
+                                <p class="mb-1">{{ infoPlan.category }}</p>
+                                <h5 class="mt-1">Utilização</h5>
+                                <p class="mb-1">{{ infoPlan.use }}</p>
+                                <h5 class="mt-1">Rede hoteleira</h5>
+                                <p class="mb-1">{{ infoPlan.hotelChain }}</p>
+                                <h5 class="mt-1">Modalidade</h5>
+                                <p class="mb-1">{{ infoPlan.modality }}</p>
+                                <hr class="hr">
+                                <h4>Quantidade:</h4>
+                                <h5 class="mb-1">{{ buyPlan?.setupPlan?.qtdDiarias }} diárias e {{
+                                    buyPlan?.setupPlan?.plFamilia ? '3' : '2' }} pessoas</h5>
+                                <hr class="hr">
+                                <div class="mb-1" fxLayoutAlign="space-between center">
+                                    <h4>Café da manhã:</h4>
+                                    <p class="mb-0">Incluso</p>
+                                </div>
+                                <div class="mb-1" fxLayoutAlign="space-between center" *ngIf="vendCodigo == '99015'">
+                                    <h4>Dotz:</h4>
+                                    <p class="mb-0">10.000</p>
+                                </div>
+                                <div class="mb-1" fxLayoutAlign="space-between center">
+                                    <h4>Seguro Assist Card:</h4>
+                                    <p class="mb-0">Incluso</p>
+                                </div>
+                            </div>
+                            <div *ngIf="errorFinished">
+                                <h4>Informações da sua compra:</h4>
+                                <p class="text-danger mt-2">
+                                    Infelizmente seu pagamento não foi aprovado. Entre em contato com a administradora
+                                    do seu
+                                    cartão ou tente novamente em 10 minutos.
+                                </p>
+                                <div class="text-danger">
+                                    Você também pode entrar em contato conosco através do
+                                    <div class="text-center mt-2">
+                                        <button matRipple mat-raised-button>
+                                            <a class="link" href="https://api.whatsapp.com/send?phone=555474008256"
+                                                target="_blank" rel="nofollow" fxLayoutAlign="center center">
+                                                <mat-icon class="mat-18 app-gren">whatsapp</mat-icon> <span
+                                                    class="ml-2 mat-primary">Whatsapp</span>
+                                            </a>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mt-4 mb-3" fxLayoutAlign="space-around center">
+                                    <button matRipple class="btn-arounded btn-cancelar"
+                                        (click)="goHome()">Cancelar</button>
+                                    <button matRipple class="btn-green" (click)="tryAgainPayment()">Tentar
+                                        novamente</button>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-step>
+                </mat-stepper>
+            </div>
+            <div class="borda-checkout p-4 mt-4" *ngIf="paymentFormGroup.value?.indication">
+                <app-indication [personalInfo]="personalInfo"></app-indication>
+            </div>
+        </div>
+    </div>
+</div>

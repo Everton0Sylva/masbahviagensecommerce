@@ -1,0 +1,29 @@
+.footer {
+    background-color: var(--primary-color);
+    padding: 25px;
+}
+.container-footer {
+    width: 100%;
+    max-width: 870px;
+    margin: auto;
+    padding: 20px auto !important;
+}
+.logo-footer {
+    max-height: 50px;
+}
+.icone-redes {
+    background-color: white;
+    font-size: 25px;
+    color: var(--primary-color);
+    border-radius: 100%;
+    border: 1px solid;
+    height: 40px;
+    width: 40px;
+    text-decoration: none;
+  
+    @media (max-width: 960px) {
+      font-size: 20px;
+      height: 35px;
+      width: 35px;
+    }
+  }

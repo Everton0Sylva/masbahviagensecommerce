@@ -1,0 +1,208 @@
+<div class="container text-center mt-4 container-indique-mais" id="indique-mais">
+    <h3 class="mat-primary font-weight-bolder mb-0"><b>Escolha a melhor</b></h3>
+    <h3 class="mat-primary font-weight-bolder pl-130 fs-30">assinatura para <b class="indique-mais">você</b></h3>
+</div>
+<div class="container text-center mt-4 container-indique-mais">
+    <div class="row container-menu">
+        <div class="col-md mt-2 mb-2 pl-0 pr-0" *ngFor="let link of links">
+            <a class="cursor-pointer font-weight-bolder {{ link.selecionado ? 'selecionado': '' }}" (click)="selectPlan(link)"><b>{{ link.name }}</b></a>
+        </div>
+    </div>
+</div>
+<div class="container container-indique-mais">
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <div>
+                <swiper [slidesPerView]="1" [centeredSlides]="true" [spaceBetween]="10"
+                    [autoplay]="{ delay: 2500, disableOnInteraction: false }">
+                    <ng-template swiperSlide *ngFor="let hotelPhotos of selectedPlan.image">
+                        <div class="hotel">
+                            <div class="text-center mt-3">
+                                <img class="img-fluid img-destino"
+                                    src="{{ baseImages }}/hoteisDestaque/{{ hotelPhotos?.url }}"
+                                    alt="Imagem do plano">
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <!-- <div class="max-400">
+                <h4 class="text-center">{{ selectedPlan.name | uppercase }}</h4>
+                <p class="text-center mat-warn">{{ selectedPlan.description }}</p>
+            </div> -->
+
+            <div class=" mt-2">
+                <h4>O PERFIL DO VIAJANTE {{ selectedPlan?.name | uppercase }}</h4>
+                <div class="mt-2">
+                    <p class="mat-primary">
+                        <img class="img-fluid imagem-plano" src="{{ baseAssets }}/pag-selecao-plano/icone-texto-61x70px.png"
+                            alt="icone plano">
+    
+                        <span *ngIf="selectedPlan.id == 36">
+                            <b>
+                                A assinatura de viagens VIP te dá a liberdade de escolher quando visitar um lugar que você
+                                gosta
+                                e com uma grande variedade de hotéis para descansar bastante.
+                            </b>
+                            Planeje as datas e o hotel que você vai se hospedar e depois é só curtir muito a sua viagem!
+                        </span>
+    
+                        <span *ngIf="selectedPlan.id == 37">
+                            <b>
+                                A assinatura MASTER tem a praticidade que você precisa para marcar a sua próxima viagem.
+                            </b>
+                            Econômica e flexível, essa categoria oferece diversos hotéis em todos os destinos brasileiros em
+                            períodos
+                            com menos movimento. Explore a diversidade do nosso país, divirta-se e realize seu sonho de
+                            viajar!
+                        </span>
+    
+                        <span *ngIf="selectedPlan.id == 38">
+                            <b>
+                                A assinatura GOLD VIP é a melhor opção para você programar sua viagem em qualquer período do
+                                ano sem precisar abrir mão do conforto na sua hospedagem.
+                            </b>
+                            Diversas opções de hotéis de categoria superior em todos os cantos do Brasil. Visite novos
+                            lugares, viva experiências únicas e registre momentos especiais.
+                        </span>
+    
+                        <span *ngIf="selectedPlan.id == 39">
+                            <b>
+                                A assinatura GOLD MASTER é para quem gosta de hospedagem em categoria superior com menor
+                                fluxo turístico, aproveitando + os passeios com tranquilidade e economia.
+                            </b>
+                            São muitas opções de hotéis nos destinos mais procurados do Brasil! Viaje muito + e realize seus
+                            planos com liberdade e segurança.
+                        </span>
+    
+                        <span *ngIf="selectedPlan.id == 40">
+                            <b>
+                                A assinatura de viagens DIAMANTE é tudo que você precisa para curtir o máximo de conforto.
+                            </b>
+                            Resorts, apartamentos de luxo e super luxo para você viver experiências grandiosas em qualquer
+                            período do
+                            ano no destino da sua escolha, seja no Brasil ou pelo mundo. Assine e tenha as melhores opções
+                            de hotéis.
+                        </span>
+    
+                        <span *ngIf="selectedPlan.id == 41">
+                            <b>
+                                Com a assinatura GO! VIP você pode viajar em qualquer época do ano com + economia e
+                                flexibilidade
+                            </b>
+                            São muitas opções de hospedagem para você explorar o Brasil do seu jeito, sempre com praticidade
+                            para fazer
+                            sua reserva, contando com café da manhã e seguro viagem para você + 1 acompanhante.
+                        </span>
+    
+                        <span *ngIf="selectedPlan.id == 42">
+                            <b>
+                                A assinatura GO! MASTER é para os apaixonados por viagens que optam por destinos mais
+                                próximos ou
+                                que preferem investir em + experiências.
+                            </b>
+                            As opções de hospedagem possuem mais que o necessário para descansar com conforto e no dia
+                            seguinte aproveitar muito.
+                        </span>
+                    </p>
+                </div>
+                <hr class="hr">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="max-400">
+                            <h6 class="text-center"><b>Categoria de hotéis</b></h6>
+                            <p class="text-center">{{ selectedPlan.category }}</p>
+                        </div>
+    
+                        <div class="max-400">
+                            <h6 class="text-center"><b>Utilização</b></h6>
+                            <p class="text-center">{{ selectedPlan.use }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="max-400">
+                            <h6 class="text-center"><b>Rede hoteleira</b></h6>
+                            <p class="text-center">{{ selectedPlan.hotelChain }}</p>
+                        </div>
+                        <div class="max-400">
+                            <h6 class="text-center"><b>Modalidade</b></h6>
+                            <p class="text-center">{{ selectedPlan.modality }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- <div class="max-400">
+                <h6 class="text-center"><b>Categoria de hotéis</b></h6>
+                <p class="text-center">{{ selectedPlan.category }}</p>
+            </div>
+            <div class="max-400">
+                <h6 class="text-center"><b>Utilização</b></h6>
+                <p class="text-center">{{ selectedPlan.use }}</p>
+            </div>
+            <div class="max-400">
+                <h6 class="text-center"><b>Rede hoteleira</b></h6>
+                <p class="text-center">{{ selectedPlan.hotelChain }}</p>
+            </div>
+            <div class="max-400">
+                <h6 class="text-center"><b>Modalidade</b></h6>
+                <p class="text-center">{{ selectedPlan.modality }}</p>
+            </div> -->
+            <div class="max-400">
+                <div class="text-center diarias">
+                    <span *ngIf="!selectedPlanGO">7 a 49 diárias</span>
+                    <span *ngIf="selectedPlanGO">4 a 49 diárias</span>
+                
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center end">
+                    <div>
+                        <p class="mb-0 text-right preco-descricao">A partir de</p>
+                        <p class="text-right preco-descricao">R$</p>
+                    </div>
+                    <div>
+                        <p class="preco-grande mb-0"><b>{{ formatPrice(selectedPlan.prices.subTotal, 1) }}</b></p>
+                    </div>
+                    <div>
+                        <p class="preco-pequeno mb-0 fs-16"><b>,{{ formatPrice(selectedPlan.prices.subTotal, 2) }}</b></p>
+                        <p class="preco-descricao">/mês</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+            <div class="row">
+                <div class="col-6">
+                    <div class="text-center">
+                        <img class="img-fluid" src="{{ baseImages }}/hoteis/{{ selectedPlan.imageHotels[0]?.url }}" alt="imagem do hotel {{ selectedPlan.imageHotels[0]?.name }}">
+                        <p class="text-center mb-0 mt-2">Hotel {{ selectedPlan.imageHotels[0]?.name }}</p>
+                        <h6 class="text-center"><b>{{ selectedPlan.imageHotels[0]?.city }}</b></h6>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <img class="img-fluid" src="{{ baseImages }}/hoteis/{{ selectedPlan.imageHotels[1]?.url }}" alt="imagem do hotel {{ selectedPlan.imageHotels[1]?.name }}">
+                        <p class="text-center mb-0 mt-2">Hotel {{ selectedPlan.imageHotels[1]?.name }}</p>
+                        <h6 class="text-center"><b>{{ selectedPlan.imageHotels[1]?.city }}</b></h6>
+                    </div>
+                </div>
+                <div class="col-6 mt-4">
+                    <div class="text-center">
+                        <img class="img-fluid" src="{{ baseImages }}/hoteis/{{ selectedPlan.imageHotels[2]?.url }}" alt="imagem do hotel {{ selectedPlan.imageHotels[2]?.name }}">
+                        <p class="text-center mb-0 mt-2">Hotel {{ selectedPlan.imageHotels[2]?.name }}</p>
+                        <h6 class="text-center"><b>{{ selectedPlan.imageHotels[2]?.city }}</b></h6>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <img class="img-fluid" src="{{ baseImages }}/hoteis/{{ selectedPlan.imageHotels[3]?.url }}" alt="imagem do hotel {{ selectedPlan.imageHotels[3]?.name }}">
+                        <p class="text-center mb-0 mt-2">Hotel {{ selectedPlan.imageHotels[3]?.name }}</p>
+                        <h6 class="text-center"><b>{{ selectedPlan.imageHotels[3]?.city }}</b></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12 text-center">
+            <a class="btn-assine-indique-mais font-weight-bold cursor-pointer" (click)="goCheckout()">Assine agora</a>
+        </div>
+    </div>
+</div>

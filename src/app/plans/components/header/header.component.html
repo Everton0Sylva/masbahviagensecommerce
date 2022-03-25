@@ -1,0 +1,23 @@
+<ngx-spinner bdColor = "rgba(52,35,128,0.8)" size = "medium" color = "#f26625" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Carregando... </p></ngx-spinner>
+<app-header-home></app-header-home>
+<header class="header">
+    <div class="container-header">
+        <img class="img-fluid" src="{{ baseAssets }}/pag-selecao-plano/bannerdiamante-1300x400px.png" alt="imagem header">
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light mb-3">
+        <div class="container-header" fxLayout="row" fxLayout.xs="row wrap" fxLayout.sm="row wrap" fxLayoutAlign="space-between center">
+
+            <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+                &#9776;
+            </button>
+    
+            <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse justify-content-center container-menu" fxFlex="auto" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item" *ngFor="let link of links">
+                        <a [ngClass]="['nav-link pl-4 pr-4 link', link.selecionado ? 'selecionado': '']" (click)="selectPlan(link)"><b>{{ link.name | uppercase }}</b></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

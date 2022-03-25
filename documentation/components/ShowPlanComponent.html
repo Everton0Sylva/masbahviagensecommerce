@@ -1,0 +1,865 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>dotz documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">dotz documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  ShowPlanComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/plans/components/show-plan/show-plan.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-show-plan</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./show-plan.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./show-plan.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#baseAssets" >baseAssets</a>
+                            </li>
+                            <li>
+                                <a href="#baseImages" >baseImages</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formatPrice" >formatPrice</a>
+                            </li>
+                            <li>
+                                <a href="#goCheckout" >goCheckout</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#selectedPlan" >selectedPlan</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, base64Service: <a href="../injectables/Base64Service.html" target="_self">Base64Service</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/plans/components/show-plan/show-plan.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>base64Service</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/Base64Service.html" target="_self" >Base64Service</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedPlan"></a>
+                        <b>selectedPlan</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Plan.html" target="_self" >Plan</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Plan()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/plans/components/show-plan/show-plan.component.ts:14</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatPrice"></a>
+                    <span class="name">
+                        <span ><b>formatPrice</b></span>
+                        <a href="#formatPrice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatPrice(price: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, part: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/app/plans/components/show-plan/show-plan.component.ts:28</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>price</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>part</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goCheckout"></a>
+                    <span class="name">
+                        <span ><b>goCheckout</b></span>
+                        <a href="#goCheckout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goCheckout()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/app/plans/components/show-plan/show-plan.component.ts:39</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/plans/components/show-plan/show-plan.component.ts:25</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseAssets"></a>
+                    <span class="name">
+                        <span ><b>baseAssets</b></span>
+                        <a href="#baseAssets"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>environment.baseAssets</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/plans/components/show-plan/show-plan.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseImages"></a>
+                    <span class="name">
+                        <span ><b>baseImages</b></span>
+                        <a href="#baseImages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>environment.baseImagens</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/plans/components/show-plan/show-plan.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { IPlan, Plan } from &#x27;src/app/home/interfaces/plan&#x27;;
+import { Base64Service } from &#x27;src/app/shared/services/base64.service&#x27;;
+import { environment } from &#x27;src/environments/environment&#x27;;
+
+@Component({
+  selector: &#x27;app-show-plan&#x27;,
+  templateUrl: &#x27;./show-plan.component.html&#x27;,
+  styleUrls: [&#x27;./show-plan.component.scss&#x27;]
+})
+export class ShowPlanComponent implements OnInit {
+
+  @Input() selectedPlan: Plan &#x3D; new Plan();
+
+  baseAssets: string &#x3D; environment.baseAssets;
+  baseImages: string &#x3D; environment.baseImagens;
+  
+  constructor(
+    private router: Router,
+    private base64Service: Base64Service,
+  ) {
+  }
+
+  ngOnInit(): void {
+  }
+
+  formatPrice(price: number, part: number) {
+    const value &#x3D; price.toString().split(&#x27;.&#x27;);
+    
+    if (part &#x3D;&#x3D; 1) return value[0];
+    if (part &#x3D;&#x3D; 2) {
+      if (value[1]) return value[1];
+      return &#x27;00&#x27;;
+    }
+    return price;
+  }
+
+  goCheckout() {
+    this.router.navigate([&#x27;checkout&#x27;], { queryParams: { plan: this.base64Service.encode(JSON.stringify(this.selectedPlan)) } });
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot; id&#x3D;&quot;destinos&quot;&gt;
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col-md-4 mt-5 justify-items-start&quot;&gt;
+            &lt;div&gt;
+                &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                    &lt;h3 class&#x3D;&quot;mat-primary font-weight-bold&quot;&gt;&lt;b&gt;Hotéis&lt;/b&gt;&lt;/h3&gt;
+                    &lt;h3 class&#x3D;&quot;mat-accent font-weight-bold pl-130&quot;&gt;&lt;b&gt;{{ selectedPlan?.name | titlecase }}&lt;/b&gt;&lt;/h3&gt;
+                &lt;/div&gt;
+                
+                &lt;div&gt;
+                    &lt;swiper
+                        [slidesPerView]&#x3D;&quot;1&quot;
+                        [centeredSlides]&#x3D;&quot;true&quot;
+                        [spaceBetween]&#x3D;&quot;10&quot;
+                        [autoplay]&#x3D;&quot;{ delay: 2500, disableOnInteraction: false }&quot;
+                    &gt;
+                        &lt;ng-template swiperSlide *ngFor&#x3D;&quot;let hotelPhotos of selectedPlan.image&quot;&gt;
+                            &lt;div class&#x3D;&quot;hotel&quot;&gt;
+                                &lt;div class&#x3D;&quot;text-center mt-3&quot;&gt;
+                                    &lt;img class&#x3D;&quot;img-fluid img-destino&quot; src&#x3D;&quot;{{ baseImages }}/hoteisDestaque/{{ hotelPhotos?.url }}&quot; alt&#x3D;&quot;Imagem do plano&quot;&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;text-center mt-3&quot;&gt;
+                                    &lt;b class&#x3D;&quot;link selecionado&quot;&gt;{{ selectedPlan?.name | uppercase }}&lt;/b&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;text-center mt-4 mb-2&quot;&gt;
+                                    &lt;span class&#x3D;&quot;nome-hotel&quot;&gt;{{ hotelPhotos?.name }}&lt;/span&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/ng-template&gt;
+                    &lt;/swiper&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;max-400&quot;&gt;
+                    &lt;div class&#x3D;&quot;text-center diarias mt-4&quot;&gt;
+                        &lt;span&gt;7 a 49 diárias&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div fxLayout&#x3D;&quot;row&quot; fxLayoutAlign&#x3D;&quot;center end&quot; class&#x3D;&quot;mat-primary&quot;&gt;
+                        &lt;div&gt;
+                            &lt;p class&#x3D;&quot;mb-0 text-right preco-descricao&quot;&gt;A partir de&lt;/p&gt;
+                            &lt;p class&#x3D;&quot;text-right preco-descricao&quot;&gt;R$&lt;/p&gt;
+                        &lt;/div&gt;
+                        &lt;div&gt;
+                            &lt;p class&#x3D;&quot;preco-grande mb-0&quot;&gt;&lt;b&gt;{{ formatPrice(selectedPlan.prices.subTotal, 1) }}&lt;/b&gt;&lt;/p&gt;
+                        &lt;/div&gt;
+                        &lt;div&gt;
+                            &lt;p class&#x3D;&quot;preco-pequeno mb-0 fs-16&quot;&gt;&lt;b&gt;,{{ formatPrice(selectedPlan.prices.subTotal, 2) }}&lt;/b&gt;&lt;/p&gt;
+                            &lt;p class&#x3D;&quot;preco-descricao&quot;&gt;/mês&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col-md-2&quot;&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;col-md-6 mt-5&quot;&gt;
+            &lt;h4&gt;O PERFIL DO VIAJANTE {{ selectedPlan?.name }}&lt;/h4&gt;
+            &lt;div class&#x3D;&quot;mt-4&quot;&gt;
+                &lt;p class&#x3D;&quot;mat-primary&quot;&gt;
+                    &lt;img class&#x3D;&quot;img-fluid imagem-plano&quot; src&#x3D;&quot;{{ baseAssets }}/pag-selecao-plano/icone-texto-61x70px.png&quot; alt&#x3D;&quot;icone plano&quot;&gt;
+                    &lt;b&gt;A assinatura de viagens {{ selectedPlan?.name }} é tudo que você precisa para curtir com o máximo de conforto.&lt;/b&gt;
+                    Resorts, apartamentos de luxo, etc etc etc... Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Praesent consectetur mi vel bibendum faucibus. Mauris ultrices turpis sit amet velit lacinia lacinia.
+                &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;hr class&#x3D;&quot;hr&quot;&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                    &lt;h5 class&#x3D;&quot;mb-0&quot;&gt;CATEGORIAS DE HOTÉIS&lt;/h5&gt;
+                    &lt;p class&#x3D;&quot;mat-primary font-weight-bold&quot;&gt;Luxo, Super Luxo e Resorts&lt;/p&gt;
+
+                    &lt;h5 class&#x3D;&quot;mb-0&quot;&gt;UTILIZAÇÃO&lt;/h5&gt;
+                    &lt;p class&#x3D;&quot;mat-primary font-weight-bold&quot;&gt;Ano todo&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                    &lt;h5 class&#x3D;&quot;mb-0&quot;&gt;REDE HOTELEIRA&lt;/h5&gt;
+                    &lt;p class&#x3D;&quot;mat-primary font-weight-bold&quot;&gt;Nacional e Internacional&lt;/p&gt;
+
+                    &lt;h5 class&#x3D;&quot;mb-0&quot;&gt;MODALIDADE&lt;/h5&gt;
+                    &lt;p class&#x3D;&quot;mat-primary font-weight-bold&quot;&gt;Casal e família&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;swiper
+                    [slidesPerView]&#x3D;&quot;3&quot;
+                    [centeredSlides]&#x3D;&quot;true&quot;
+                    [spaceBetween]&#x3D;&quot;50&quot;
+                    [navigation]&#x3D;&quot;true&quot;
+                    [loop]&#x3D;&quot;true&quot;
+                    [autoplay]&#x3D;&quot;{ delay: 2500, disableOnInteraction: false }&quot;
+                &gt;
+                    &lt;ng-template swiperSlide *ngFor&#x3D;&quot;let hotelPhotos of selectedPlan.imageHotels; let i &#x3D; index&quot;&gt;
+                        &lt;div&gt;
+                            &lt;img class&#x3D;&quot;img-fluid&quot; src&#x3D;&quot;{{ baseImages }}/hoteis/{{ selectedPlan.imageHotels[i]?.url }}&quot; alt&#x3D;&quot;imagem do hotel {{ selectedPlan.imageHotels[i].name }}&quot;&gt;
+                            &lt;p class&#x3D;&quot;text-center mb-0 mt-4 mat-primary&quot;&gt;Hotel {{ selectedPlan.imageHotels[i].name }}&lt;/p&gt;
+                            &lt;h5 class&#x3D;&quot;text-center&quot;&gt;{{ selectedPlan.imageHotels[i].city | uppercase }}&lt;/h5&gt;
+                        &lt;/div&gt;
+                    &lt;/ng-template&gt;
+                &lt;/swiper&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;text-center mt-4&quot;&gt;
+                &lt;a class&#x3D;&quot;btn-assine-pesquisa-hoteis font-weight-bold cursor-pointer&quot; (click)&#x3D;&quot;goCheckout()&quot;&gt;ASSINE AGORA&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./show-plan.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.pl-130 {
+    padding-left: 130px;
+
+    @media (max-width: 476px) {
+        padding-left: 70px;
+    }
+}
+h3 {
+    margin-bottom: 0;
+    font-size: 35px;
+
+    @media (max-width: 425px) {
+        font-size: 30px;
+    }
+}
+h4 {
+    font-size: 24px;
+    color: var(--green-color);
+    font-weight: bolder;
+}
+h5 {
+    font-size: 16px;
+    color: var(--green-color);
+    font-weight: bolder;
+}
+p {
+    font-size: 16px;
+}
+.img-destino {
+    max-width: 300px;
+}
+.selecionado {
+    background-color: var(--primary-color);
+    color: white !important;
+    border-radius: 50px;
+    padding: 5px 15px;
+    text-decoration: none;
+}
+.nome-hotel {
+    border-radius: 50px;
+    border: 1px solid var(--warn-color);
+    color: var(--primary-color);
+    padding: 3px 30px;
+}
+.diarias {
+    background-color: var(--primary-color);
+    border-radius: 50px;
+    padding: 5px 15px;
+    color: white;
+    width: 250px;
+    margin: auto;
+}
+.preco-descricao {
+    font-size: 14px;
+}
+.preco-pequeno {
+    font-size: 14px;
+
+}
+.preco-grande {
+    font-size: 50px;
+}
+.max-400 {
+    max-width: 400px;
+    margin: auto;
+}
+.imagem-plano {
+    margin-right: 10px;
+    float: left;
+}
+.hr {
+    border: 0px;
+    color: var(--primary-color);
+}
+.btn-assine-pesquisa-hoteis {
+    background-color: var(--accent-color);
+    border-radius: 50px;
+    color: white;
+    padding: 5px 80px;
+    text-decoration: none;
+}
+.container-show-plan {
+    width: 100%;
+    max-width: 870px !important;
+    margin: auto;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container" id="destinos">    <div class="row">        <div class="col-md-4 mt-5 justify-items-start">            <div>                <div class="text-center">                    <h3 class="mat-primary font-weight-bold"><b>Hotéis</b></h3>                    <h3 class="mat-accent font-weight-bold pl-130"><b>{{ selectedPlan?.name | titlecase }}</b></h3>                </div>                                <div>                    <swiper                        [slidesPerView]="1"                        [centeredSlides]="true"                        [spaceBetween]="10"                        [autoplay]="{ delay: 2500, disableOnInteraction: false }"                    >                        <ng-template swiperSlide *ngFor="let hotelPhotos of selectedPlan.image">                            <div class="hotel">                                <div class="text-center mt-3">                                    <img class="img-fluid img-destino" src="{{ baseImages }}/hoteisDestaque/{{ hotelPhotos?.url }}" alt="Imagem do plano">                                </div>                                <div class="text-center mt-3">                                    <b class="link selecionado">{{ selectedPlan?.name | uppercase }}</b>                                </div>                                <div class="text-center mt-4 mb-2">                                    <span class="nome-hotel">{{ hotelPhotos?.name }}</span>                                </div>                            </div>                        </ng-template>                    </swiper>                </div>                <div class="max-400">                    <div class="text-center diarias mt-4">                        <span>7 a 49 diárias</span>                    </div>                    <div fxLayout="row" fxLayoutAlign="center end" class="mat-primary">                        <div>                            <p class="mb-0 text-right preco-descricao">A partir de</p>                            <p class="text-right preco-descricao">R$</p>                        </div>                        <div>                            <p class="preco-grande mb-0"><b>{{ formatPrice(selectedPlan.prices.subTotal, 1) }}</b></p>                        </div>                        <div>                            <p class="preco-pequeno mb-0 fs-16"><b>,{{ formatPrice(selectedPlan.prices.subTotal, 2) }}</b></p>                            <p class="preco-descricao">/mês</p>                        </div>                    </div>                </div>            </div>        </div>        <div class="col-md-2"></div>        <div class="col-md-6 mt-5">            <h4>O PERFIL DO VIAJANTE {{ selectedPlan?.name }}</h4>            <div class="mt-4">                <p class="mat-primary">                    <img class="img-fluid imagem-plano" src="{{ baseAssets }}/pag-selecao-plano/icone-texto-61x70px.png" alt="icone plano">                    <b>A assinatura de viagens {{ selectedPlan?.name }} é tudo que você precisa para curtir com o máximo de conforto.</b>                    Resorts, apartamentos de luxo, etc etc etc... Lorem ipsum dolor sit amet, consectetur adipiscing elit.                    Praesent consectetur mi vel bibendum faucibus. Mauris ultrices turpis sit amet velit lacinia lacinia.                </p>            </div>            <hr class="hr">            <div class="row">                <div class="col-md-6">                    <h5 class="mb-0">CATEGORIAS DE HOTÉIS</h5>                    <p class="mat-primary font-weight-bold">Luxo, Super Luxo e Resorts</p>                    <h5 class="mb-0">UTILIZAÇÃO</h5>                    <p class="mat-primary font-weight-bold">Ano todo</p>                </div>                <div class="col-md-6">                    <h5 class="mb-0">REDE HOTELEIRA</h5>                    <p class="mat-primary font-weight-bold">Nacional e Internacional</p>                    <h5 class="mb-0">MODALIDADE</h5>                    <p class="mat-primary font-weight-bold">Casal e família</p>                </div>            </div>            <div>                <swiper                    [slidesPerView]="3"                    [centeredSlides]="true"                    [spaceBetween]="50"                    [navigation]="true"                    [loop]="true"                    [autoplay]="{ delay: 2500, disableOnInteraction: false }"                >                    <ng-template swiperSlide *ngFor="let hotelPhotos of selectedPlan.imageHotels; let i = index">                        <div>                            <img class="img-fluid" src="{{ baseImages }}/hoteis/{{ selectedPlan.imageHotels[i]?.url }}" alt="imagem do hotel {{ selectedPlan.imageHotels[i].name }}">                            <p class="text-center mb-0 mt-4 mat-primary">Hotel {{ selectedPlan.imageHotels[i].name }}</p>                            <h5 class="text-center">{{ selectedPlan.imageHotels[i].city | uppercase }}</h5>                        </div>                    </ng-template>                </swiper>            </div>            <div class="text-center mt-4">                <a class="btn-assine-pesquisa-hoteis font-weight-bold cursor-pointer" (click)="goCheckout()">ASSINE AGORA</a>            </div>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BenefitsComponent', 'selector': 'app-benefits'},{'name': 'CheckoutComponent', 'selector': 'app-checkout'},{'name': 'DestinationsComponent', 'selector': 'app-destinations'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HeaderComponent', 'selector': 'app-header-home'},{'name': 'HeaderComponent', 'selector': 'app-header-plans'},{'name': 'HeaderComponent', 'selector': 'app-header-home'},{'name': 'HeaderComponent', 'selector': 'app-header-checkout'},{'name': 'HeaderHomeComponent', 'selector': 'app-header-home'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IndicateMoreComponent', 'selector': 'app-indicate-more'},{'name': 'InfoPlanComponent', 'selector': 'app-info-plan'},{'name': 'PlansComponent', 'selector': 'app-plans'},{'name': 'ShowPlanComponent', 'selector': 'app-show-plan'},{'name': 'TestimonialComponent', 'selector': 'app-testimonial'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ShowPlanComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ShowPlanComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
